@@ -24,3 +24,91 @@ To get started on a project:
 1. Submit pull requests and request reviews as you make progress
 
 In Monday's group session, we will start on one project together.  In the next group session, we will have people demo one of the projects they've worked on.
+
+## Configuring Projects w/ Jest + ESLint
+
+If you're using VS Code, Atom, or similar, install the `eslint` extension.
+
+### Jest
+
+Relevant documentation:
+- [Getting Started with Jest](https://jestjs.io/docs/en/getting-started)
+- [Configuring Jest](https://jestjs.io/docs/en/configuration)
+
+By default, Jest expects all tests to live in the `__tests__` directory.
+
+To install `jest`, run
+
+```console
+npm install --save-dev jest
+```
+
+To create a `jest` configuration file, run
+
+```console
+jest --init
+```
+
+and follow the instructions.
+
+If you want `npm test` to run `jest`, edit the `"scripts"` section in `package.json`:
+
+```json
+{
+  "scripts": {
+    "test": "jest"
+  }
+}
+```
+
+### ESLint w/ AirBnb's Style Guide
+
+We're using [AirBnb's JavaScript Style Guide](https://github.com/airbnb/javascript), mostly to get used to using a style guide and a linter that enforces the style.
+
+To install in your project, run
+
+```javascript
+npx install-peerdeps --dev eslint-config-airbnb-base
+```
+
+Edit `.eslintrc.json` so it extends the `airbnb-base` rules:
+
+```json
+{
+  "extends": "airbnb-base",
+  "rules" :{
+    "no-console": "off"
+  }
+}
+```
+
+If you're writing a command-line app we recommending setting the `no-console` rule to `"off"`, since using `console.log` in the command-line context is fine.
+
+### ESLint w/ Jest
+
+By default, ESLint doesn't like the Jest test files.  Install the following plugin:
+
+```console
+npm install --save-dev eslint-plugin-jest
+```
+
+Tell ESLint to ignore your Jest configuration file by adding this line to the `.eslintignore` file:
+
+```text
+jest.config.js
+```
+
+Edit `.eslintrc.json` so `eslint` knows what to do when looking at Jest test files:
+
+```json
+{
+  "env": {
+    "jest/globals": true
+  },
+  "extends": "airbnb-base",
+  "plugins": ["jest"],
+  "rules" :{
+    "no-console": "off"
+  }
+}
+```
