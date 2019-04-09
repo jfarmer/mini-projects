@@ -82,6 +82,8 @@ Edit `.eslintrc.json` so it extends the `airbnb-base` rules:
 }
 ```
 
+This sets the rules from `airbnb-base` as the default, but they can be overriden in the `"rules"` section.
+
 If you're writing a command-line app we recommending setting the `no-console` rule to `"off"`, since using `console.log` in the command-line context is fine.
 
 ### ESLint w/ Jest
