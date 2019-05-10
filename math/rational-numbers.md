@@ -40,7 +40,7 @@ As you can see, floating-point arithmetic isn't even [associative](https://en.wi
 
 In general, we'd write the set of all rational numbers as
 
-````
+```
 { p/q : p,q are integers }
 ```
 
